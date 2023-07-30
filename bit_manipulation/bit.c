@@ -16,5 +16,9 @@ int main(void)
     //How it works
     printf("NOR: %d\n", z ^ x); // Result: 0000000000001010 (10 in decimal)
 
+    // NOT
+    //How it works
+    printf("NOT: %d\n", z ~ x); // Result: 0000000000001010 (10 in decimal)
+
     return 0;
 }
