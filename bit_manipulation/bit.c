@@ -2,10 +2,10 @@
 
 int main(void)
 {
-    int z = 12;
-    int y = 8;
+    int z = 12; //0000000000001100
+    int y = 8; //0000000000001000
     int x = 6;
 
     //AND
-    printf("AND: ", z & y);
+    printf("AND: %d", z & y);
 }
