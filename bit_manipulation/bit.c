@@ -18,7 +18,7 @@ int main(void)
 
     // NOT
     //How it works
-    printf("NOT: %d\n", ~x); // Result: 0000000000001010 (10 in decimal)
+    printf("NOT: %d\n", ~x); // Result: 1111111111111001 (10 in decimal)
 
     return 0;
 }
