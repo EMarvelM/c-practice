@@ -10,11 +10,11 @@ int and(int x, ...)
     int arrx[32], i, arry[32];
     for (i = 0; x != 0; i++)
     {
-        arrx[i] = x % 2;
-        x = x/10;
+        x = x % 2;
+        arrx[i] = x/10;
 
-        arry[i] = y % 2;
-        x = y/10;
+        y = y % 2;
+        arry[i] = y/10;
     }
 
 }
