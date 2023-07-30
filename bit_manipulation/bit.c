@@ -1,4 +1,23 @@
 #include <stdio.h>
+#include <stdarg.h>
+
+int and(int x, ...)
+{
+    va_list op;
+    va_start(op, x);
+    int y = va_arg(op, int);
+
+    int arrx[32], i, arry[32];
+    for (i = 0; x != 0; i++)
+    {
+        arrx[i] = x % 2;
+        x = x/10;
+
+        arry[i] = y % 2;
+        x = y/10;
+    }
+
+}
 
 int main(void)
 {
@@ -8,6 +27,7 @@ int main(void)
 
     // AND
     printf("AND: %d\n", z & y); // Result: 0000000000001000 (8 in decimal)
+    printf("AND: %d\n", and(z, y)); // Result: 0000000000001000 (8 in decimal)
 
     // OR
     printf("OR: %d\n", x | y); // Result: 0000000000001110 (14 in decimal)
