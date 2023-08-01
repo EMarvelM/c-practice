@@ -4,21 +4,21 @@
 /**
  * print_listint - traverse linked list printing each data
  * @h: points to the head
- * 
- * Return: 0 on success
+ *
+ * Return: number of nodes
 */
 
 size_t print_listint(const listint_t *h)
 {
-    const listint_t *temp;
-    temp = h;
-    unsigned count = 0;
+        const listint_t *temp = h;
 
-    while(temp != NULL)
-    {
-        printf("%d\n",temp->n);
-        temp = temp->next;
-        count++;
-    }
-    return (count);
+        size_t count = 0;
+
+        while (temp != NULL)
+        {
+                printf("%d\n", temp->n);
+                temp = temp->next;
+                count += 1;
+        }
+        return (count);
 }
