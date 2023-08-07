@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    char *buffer;
+    char *buffer = NULL;
     long unsigned int n = 0;
     
     //loop printing "$ " and displaying user input
