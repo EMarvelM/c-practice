@@ -3,8 +3,8 @@
 
 int main()
 {
-        char *buffer;
-        long unsigned int n = 0;
+        char *buffer = NULL;
+        size_t n = 0;
         char *del = " \n";
         char *argv;
 
@@ -34,7 +34,8 @@ int main()
                         /* Stop printing the NULL token*/
                         if (token != NULL)
                         {
-                            argv[i] = malloc(sizeof(char) * count);
+                            /* parsing each token to a allocated memory as arguments */
+                            argv[i] = (char *)malloc(sizeof(char) * count);
                             strcpy(argv[i], token);
                             printf("token: %s\n", token);
                         }
