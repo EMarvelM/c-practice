@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
+#include <strtok.h>
 
 int main()
 {	
@@ -12,7 +13,8 @@ int main()
 	char *buf = NULL;
 	size_t n = 0;
 	int char_read = 0;
-
+	/* tokenization */
+	char *delim = " \n"
 
 
 	/* strlen for prompt */
@@ -45,6 +47,9 @@ int main()
 			}
 			break; /* breaking out of loop to allow free work*/
 		}
+
+		/* Parsing the command */
+		strtok(buff ,delim);
 	}
 
 	/* Deallocation of memory*/
