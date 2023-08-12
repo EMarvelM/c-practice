@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
-#include <strtok.h>
+#include <string.h>
 
 int main()
 {	
@@ -14,7 +14,11 @@ int main()
 	size_t n = 0;
 	int char_read = 0;
 	/* tokenization */
-	char *delim = " \n"
+	char *delim = " \n";
+	char *next_tok = NULL;
+	/* parsing */
+	char **argv;
+	int i = 0, j = 0, argv_size = 1;
 
 
 	/* strlen for prompt */
@@ -29,8 +33,35 @@ int main()
 	{
 		write(1, prompt, prompt_len);
 		char_read = getline(&buf, &n, stdin);
+		
 
-		int save_errono = errno;/*Avoiding infinite loop by resetting errno*/
+		/* Parsing the command */
+		next_tok = strtok(buf, delim);
+		
+		/* printf("token ->>: %s\n", buf); ---- testing for modified value of buf*/
+		argv = (char **)malloc(sizeof(char *) * argv_size); /* allocating for first command */
+		while (next_tok != NULL)
+		{
+				/* determine strlen of tokens */
+			i = 0; /* reset i to correctly dtermine each token_len */
+			while (next_tok[i] != '\0')
+			{
+				i++;
+			}
+
+			/* memory allocation for tokens */
+			argv = (char **)realloc(*argv, (argv_size  + 1));
+			argv[j] = (char *)malloc(sizeof(char) * (i + 1));
+
+			/* printf("next token ->>: %s\n", next_tok); ----- testing for the modified value of next_tok */
+			next_tok = strtok(NULL, delim);
+//			*argv[j] = next_tok; string copy not this
+			j++;
+		}
+
+
+		/*Avoiding infinite loop by resetting errno*/
+		int save_errono = errno;
 		errno = 0;
 
 		if (char_read == -1)
@@ -48,8 +79,6 @@ int main()
 			break; /* breaking out of loop to allow free work*/
 		}
 
-		/* Parsing the command */
-		strtok(buff ,delim);
 	}
 
 	/* Deallocation of memory*/
