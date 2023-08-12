@@ -17,11 +17,8 @@ int main()
                 printf("$ ");
                 getline(&buffer, &n, stdin); /* stores each line using getline to var: buffer */
 
-            while(buffer)
-            {
-                argc++;
-            }
-            **argv = (char **)malloc(sizeof(char *) * (argc +1));
+
+            argv = (char **)malloc(sizeof(char *) * (argc +1));
 
                 char *token = strtok(buffer, del); /* makes buffer store only first argument v[0] */
                 //argv[0] = buffer;  /* Not accepted */
@@ -32,10 +29,11 @@ int main()
                 int i = 0;
                 while (token != NULL)
                 {
+                    argc++;
                     int count = 0;
-                    i++;
+                    
                         token = strtok(NULL, del);
-                        *argv = (char *)malloc(strlen(token)+1);
+                        argv[i] = (char *)malloc(strlen(token) + 1);
                             while (token)
                             {
                                 count++;
@@ -49,6 +47,7 @@ int main()
                             strcpy(argv[i], token);
                             printf("token: %s\n", token);
                         }
+                        i++;
                 }
         }
 }
