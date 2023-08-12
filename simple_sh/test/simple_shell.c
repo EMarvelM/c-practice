@@ -54,10 +54,10 @@ int main()
                         argv[j] = (char *)malloc(sizeof(char) * (i + 1));
 
                         /* printf("next token ->>: %s\n", next_tok); ----- testing for the modified value of next_tok */
-                        next_tok = strtok(NULL, delim);
                         strcpy(argv[j], next_tok);
 //                      *argv[j] = next_tok; string copy not this
                         j++;
+						next_tok = strtok(NULL, delim);
                 }
                 argv[j] = NULL; /* setting the last value of the array to null*/
 
