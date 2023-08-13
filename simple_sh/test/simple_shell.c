@@ -17,8 +17,9 @@ int main()
         char *delim = " \n";
         char *next_tok = NULL;
         /* parsing */
+        int i = 0, j = 0, argv_size = 2;
         char **argv;
-        int i = 0, j = 0, argv_size = 1;
+        argv = (char **)malloc(sizeof(char *) * (argv_size)); /* allocating for first command adding 1 for NULL pointer */      
 
 
         /* strlen for prompt */
@@ -39,7 +40,7 @@ int main()
                 next_tok = strtok(buf, delim);
 
                 /* printf("token ->>: %s\n", buf); ---- testing for modified value of buf*/
-                argv = (char **)malloc(sizeof(char *) * (argv_size + 1)); /* allocating for first command adding 1 for NULL pointer */      
+
                 while (next_tok != NULL)
                 {
                                 /* determine strlen of tokens */
@@ -50,16 +51,16 @@ int main()
                         }
 
                         /* memory allocation for tokens */
-                        argv = (char **)realloc(argv, sizeof(char *) * (argv_size  + 1)); /* adding two, one for NULL*/
+                        argv = (char **)realloc(argv, sizeof(char *) * 1); /* adding one for the new arguments*/
                         argv[j] = (char *)malloc(sizeof(char) * (i + 1));
 
                         /* printf("next token ->>: %s\n", next_tok); ----- testing for the modified value of next_tok */
                         strcpy(argv[j], next_tok);
-//                      *argv[j] = next_tok; string copy not this
                         j++;
-						next_tok = strtok(NULL, delim);
+			next_tok = strtok(NULL, delim);
+                        
                 }
-                argv[j] = NULL; /* setting the last value of the array to null*/
+                argv[j] = NULL; /* setting the last value of the array to null */
 
                 //TESTING
                 int ch = 0;
@@ -70,28 +71,19 @@ int main()
                 }
 
                 /*Avoiding infinite loop by resetting errno*/
-                int save_errono = errno;
-                errno = 0;
-
-                if (char_read == -1)
-                {
-                        /* error ocurred during getline*/
-                        if (save_errono == EINVAL)
-                        {
-                                perror("Invalid argument");
-                        }
-                        /* used the Ctrl + D */
-                        else
-                        {
-                                perror("EOL detected");
-                        }
-                        break; /* breaking out of loop to allow free work*/
-                }
-
-        }
+                /*While handling EOF goes here*/
 
         /* Deallocation of memory*/
-        free(buf);
+
+        for (int k = 0; k < j; k++)
+        {
+                free(argv[k]);
+        }
         free(argv);
+
+        argv = (char **)malloc(sizeof(char *) * (1)); /* allocating for first command when called again */      
+        }
+
+        free(buf);
         return (0);
 }

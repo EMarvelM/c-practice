@@ -1,0 +1,18 @@
+/*Avoiding infinite loop by resetting errno*/
+                int save_errono = errno;
+                errno = 0;
+
+                if (char_read == -1)
+                {
+                        /* error ocurred during getline*/
+                        if (save_errono == EINVAL)
+                        {
+                                perror("Invalid argument");
+                        }
+                        /* used the Ctrl + D */
+                        else
+                        {
+                                perror("EOL detected");
+                        }
+                        break; /* breaking out of loop to allow free work*/
+                }
