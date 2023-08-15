@@ -1,6 +1,17 @@
 #include "main.h"
 
-int main(int ac, char *agv, char **envp)
+/**
+ * main - Code starts here
+ *
+ * @ac: number of command line argument
+ * @agv: command line argument vector
+ * @env: enviroment variables
+ *
+ * Return: - 0 on success, non-zero for failure
+ *
+*/
+
+int main(int ac, char *agv, char **env)
 {
 	size_t n = 0;
 	char *buffer = NULL;
@@ -8,11 +19,10 @@ int main(int ac, char *agv, char **envp)
 	char *delim = " \n";
 	int count_tok = 0, j = 0;
 	char *next_tok = NULL;
-
 	/* parsing */
 	char **argv;
 
-	while(1)
+	while (1)
 	{
 		_prompt("$ ");
 		getline(&buffer, &n, stdin);
@@ -21,70 +31,38 @@ int main(int ac, char *agv, char **envp)
 		count_tok = str_count(buffer, delim);
 		argv = (char **)malloc(sizeof(char *) * count_tok);
 		if (argv == NULL)
-				perror("malloc allocation failed");
+		{
+			perror("malloc failed");
+			return (1); /* return non-zero for failure */
+		}
 
 		/* parsing into argv*/
 		_strpars(&j, &next_tok, &buffer, delim, &argv);
+		_execve(buffer, argv, env);
 
-		_execve(buffer, argv, envp);
-
-		/* Free allocated memory */
 		for (int k = 0; k < j; k++)
 		{
 			free(argv[k]);
 		}
 		free(argv);
-
 	}
-	/* END WHILE LOOP */
 
 	free(buffer);
 	return (0);
 }
 
-/* EXECVE*/
+/**
+ * _execve - execute a command
+ *
+ * @pathname: The path to the program to be executed.
+ * @argv: The path to the program to be executed.
+ * @envp: A vector of environment variables.
+ *
+ * Return: 0 on success, -1 on error
+ *
+*/
 int _execve(const char *pathname, char *const argv[], char *const envp[])
 {
 
-}
-
-
-char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char ***argv)
-{
-		*j = 0; /* resetting the array index for loop */
-
-		*next_tok = strtok(*buffer, delim);
-
-		(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
-		if ((*argv)[*j] == NULL)
-				{
-					perror("malloc");
-					return(NULL);
-				}
-
-		_strcpy((*argv)[*j], *next_tok);
-				printf("argv[%d] == %s\n", *j, (*argv)[*j]);
-
-		while (*next_tok != NULL)
-		{
-			(*j)++;
-			*next_tok = strtok(NULL, delim);
-
-			/* printf("argv[%d] == %s\n", *j, *next_tok); */
-					if (*next_tok != NULL)
-					{
-						(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
-						if ((*argv)[*j] == NULL)
-						{
-							perror("malloc");
-							return(NULL);
-						}
-
-						_strcpy((*argv)[*j], *next_tok);
-						printf("argv[%d] == %s\n", *j, (*argv)[*j]);
-					}
-
-		}
-
-		return (*argv);
+	return (0);
 }

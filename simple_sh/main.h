@@ -12,5 +12,6 @@ int str_count(char *buffer, char *delim);
 int _strlen(char *next_tok);
 char *_strcpy(char *dest, const char *src);
 char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char ***argv);
+int _execve(const char *pathname, char *const argv[], char *const envp[]);
 
 #endif /* MAIN_H */
