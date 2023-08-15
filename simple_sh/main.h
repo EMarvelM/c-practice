@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 
 int _prompt(char *display);
 int str_count(char *buffer, char *delim);
