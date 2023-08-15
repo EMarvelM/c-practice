@@ -2,18 +2,19 @@
 
 /**
  * _strpars - Parse a string into array of arguments
- * 
+ *
  * @j: Pointer to interger variable for track of array index.
  * @next_tok: Double pointer to the next token in the string.
  * @buffer: Double pointer points to string to be parsed/tokenized.
  * @delim: Delim that will be used for tokenization (when parsing).
  * @argv: Double pointer to the array to be fill with the tokens
- * 
+ *
  * Return: On success the dynamically allocated array of argument.
  *		   on failure (malloc), returns NULL.
 */
 
-char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char ***argv)
+char **_strpars(int *j, char **next_tok, char **buffer, const char *delim,
+char ***argv)
 {
 	*j = 0; /* resetting the array index for loop */
 	*next_tok = strtok(*buffer, delim);
@@ -22,7 +23,7 @@ char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char 
 	if ((*argv)[*j] == NULL)
 	{
 		perror("malloc");
-		return(NULL);
+		return (NULL);
 	}
 
 	_strcpy((*argv)[*j], *next_tok);
@@ -39,7 +40,7 @@ char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char 
 			if ((*argv)[*j] == NULL)
 			{
 				perror("malloc");
-				return(NULL);
+				return (NULL);
 			}
 
 			_strcpy((*argv)[*j], *next_tok);
