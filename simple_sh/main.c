@@ -6,7 +6,7 @@ int main(int ac, char *agv, char **envp)
 	char *buffer = NULL;
 	/* tokenization */
 	char *delim = " \n";
-	int count_tok = 0, j;
+	int count_tok = 0, j = 0;
 	char *next_tok = NULL;
 
 	/* parsing */
@@ -21,49 +21,22 @@ int main(int ac, char *agv, char **envp)
 		count_tok = str_count(buffer, delim);
 		argv = (char **)malloc(sizeof(char *) * count_tok);
 		if (argv == NULL)
-				perror("malloc");
+				perror("malloc allocation failed");
 
-		j = 0; /* resetting the array index for loop */
+		/* parsing into argv*/
+		_strpars(&j, &next_tok, &buffer, delim, &argv);
 
-		next_tok = strtok(buffer, delim);
+		_execve(buffer, argv, envp);
 
-		argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
-		if (argv[j] == NULL)
-				perror("malloc");
-
-		_strcpy(argv[j], next_tok);
-				printf("argv[%d] == %s\n", j, argv[j]);
-
-		while (next_tok != NULL)
+		/* Free allocated memory */
+		for (int k = 0; k < j; k++)
 		{
-			j++;
-			next_tok = strtok(NULL, delim);
-
-			/* printf("argv[%d] == %s\n", j, next_tok); */
-					if (next_tok != NULL)
-					{
-						argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
-						if (argv[j] == NULL)
-							perror("malloc");
-
-						_strcpy(argv[j], next_tok);
-						printf("argv[%d] == %s\n", j, argv[j]);
-					}
-
+			free(argv[k]);
 		}
-
-	_execve(buffer, argv, envp);
-
-	/* Free allocated memory */
-	for (int k = 0; k < j; k++)
-	{
-		free(argv[k]);
-	}
-	free(argv);
+		free(argv);
 
 	}
-				/* END WHILE LOOP */
-
+	/* END WHILE LOOP */
 
 	free(buffer);
 	return (0);
@@ -73,4 +46,39 @@ int main(int ac, char *agv, char **envp)
 int _execve(const char *pathname, char *const argv[], char *const envp[])
 {
 
+}
+
+
+char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char ***argv)
+{
+		*j = 0; /* resetting the array index for loop */
+
+		*next_tok = strtok(*buffer, delim);
+
+		(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
+		if ((*argv)[*j] == NULL)
+				perror("malloc");
+
+		_strcpy((*argv)[*j], *next_tok);
+				printf("argv[%d] == %s\n", *j, (*argv)[*j]);
+
+		while (*next_tok != NULL)
+		{
+			*j++;
+			*next_tok = strtok(NULL, delim);
+
+			/* printf("argv[%d] == %s\n", *j, *next_tok); */
+					if (*next_tok != NULL)
+					{
+						(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
+						if ((*argv)[*j] == NULL)
+							perror("malloc allocation failed");
+
+						_strcpy((*argv)[*j], *next_tok);
+						printf("argv[%d] == %s\n", *j, (*argv)[*j]);
+					}
+
+		}
+
+		return ((*argv));
 }
