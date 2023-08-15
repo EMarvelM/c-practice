@@ -7,7 +7,7 @@
 int main()
 {
         /* Prompt the user for an input */
-        char *prompt = "#cisfun ";
+        char *prompt = "$ ";
         int prompt_len = 0;
         /* getline */
         char *buf = NULL;
@@ -17,7 +17,7 @@ int main()
         char *delim = " \n";
         char *next_tok = NULL;
         /* parsing */
-        int i = 0, j = 0, argv_size = 2;
+        int i = 0, j = 0, argv_size = 1;
         char **argv;
         argv = (char **)malloc(sizeof(char *) * (argv_size)); /* allocating for first command adding 1 for NULL pointer */      
 
@@ -51,7 +51,7 @@ int main()
                         }
 
                         /* memory allocation for tokens */
-                        argv = (char **)realloc(argv, sizeof(char *) * 1); /* adding one for the new arguments*/
+                        argv = (char **)realloc(argv, sizeof(char *) * (argv_size + 1)); /* adding one for the new arguments*/
                         argv[j] = (char *)malloc(sizeof(char) * (i + 1));
 
                         /* printf("next token ->>: %s\n", next_tok); ----- testing for the modified value of next_tok */
@@ -75,15 +75,16 @@ int main()
 
         /* Deallocation of memory*/
 
-        for (int k = 0; k < j; k++)
-        {
-                free(argv[k]);
-        }
-        free(argv);
+        
 
         argv = (char **)malloc(sizeof(char *) * (1)); /* allocating for first command when called again */      
         }
 
         free(buf);
+        for (int k = 0; k < j; k++)
+        {
+                free(argv[k]);
+        }
+        free(argv);
         return (0);
 }
