@@ -9,6 +9,8 @@ char *_strcpy(char *dest, const char *src)
         dest[i] = src[i];
         i++;
     }
+    /* adding a null character to terminate string */
+    dest[i] = '\0';
 
     return(dest);
 }
