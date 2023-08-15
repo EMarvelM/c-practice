@@ -2,68 +2,68 @@
 
 int main(void)
 {
-  size_t n = 0;
-  char *buffer = NULL;
-  /* tokenization */
-  char *delim = " \n";
-  int count_tok = 0, j;
-  char *next_tok = NULL;
+	size_t n = 0;
+	char *buffer = NULL;
+	/* tokenization */
+	char *delim = " \n";
+	int count_tok = 0, j;
+	char *next_tok = NULL;
 
-  /* parsing */
-  char **argv;
-  
-  while(1)
-  {
-    _prompt("$ ");
-    getline(&buffer, &n, stdin);
+	/* parsing */
+	char **argv;
 
-    /* counting all arguments */
-    count_tok = str_count(buffer, delim);
-    argv = (char **)malloc(sizeof(char *) * count_tok);
-            if (argv == NULL)
-                perror("malloc");
+	while(1)
+	{
+		_prompt("$ ");
+		getline(&buffer, &n, stdin);
 
-    j = 0; //resetting the array index for loop
+		/* counting all arguments */
+		count_tok = str_count(buffer, delim);
+		argv = (char **)malloc(sizeof(char *) * count_tok);
+						if (argv == NULL)
+								perror("malloc");
 
-    next_tok = strtok(buffer, delim);
-        
-    argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
-            if (argv[j] == NULL)
-                perror("malloc");
+		j = 0; //resetting the array index for loop
 
-    _strcpy(argv[j], next_tok);
-        printf("argv[%d] == %s\n", j, argv[j]);
-    
-    while (next_tok != NULL)
-      {
-        j++;
-        next_tok = strtok(NULL, delim);
+		next_tok = strtok(buffer, delim);
 
-        // printf("argv[%d] == %s\n", j, next_tok);
-            if (next_tok != NULL)
-            {
-                    argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
-                    if (argv[j] == NULL)
-                    {
-                    perror("malloc");
-                    }
-                        _strcpy(argv[j], next_tok);
-                        printf("argv[%d] == %s\n", j, argv[j]);
-            }
+		argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
+						if (argv[j] == NULL)
+								perror("malloc");
 
-      }
+		_strcpy(argv[j], next_tok);
+				printf("argv[%d] == %s\n", j, argv[j]);
 
-  /* Free allocated memory */
-  for (int k = 0; k < j; k++)
-  {
-    free(argv[k]);
-  }
-  free(argv);
+		while (next_tok != NULL)
+			{
+				j++;
+				next_tok = strtok(NULL, delim);
 
-  }
-        /* END WHILE LOOP */
-  
+				// printf("argv[%d] == %s\n", j, next_tok);
+						if (next_tok != NULL)
+						{
+										argv[j] = (char *)malloc(sizeof(char) * (_strlen(next_tok) + 1));
+										if (argv[j] == NULL)
+										{
+										perror("malloc");
+										}
+												_strcpy(argv[j], next_tok);
+												printf("argv[%d] == %s\n", j, argv[j]);
+						}
 
-  free(buffer);
-  return (0);
+			}
+
+	/* Free allocated memory */
+	for (int k = 0; k < j; k++)
+	{
+		free(argv[k]);
+	}
+	free(argv);
+
+	}
+				/* END WHILE LOOP */
+
+
+	free(buffer);
+	return (0);
 }

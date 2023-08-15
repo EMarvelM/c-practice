@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Compile the C code using gcc
+gcc -o simple_shell *.c *.h
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    echo "Compilation successful! Running './simple_shell'..."
+    ./simple_shell
+else
+    echo "Compilation failed."
+fi
