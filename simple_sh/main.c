@@ -31,7 +31,7 @@ int main(void)
             if (argv[j] == NULL)
                 perror("malloc");
 
-    strcpy(argv[j], next_tok);
+    _strcpy(argv[j], next_tok);
         printf("argv[%d] == %s\n", j, argv[j]);
     
     while (next_tok != NULL)
@@ -47,7 +47,7 @@ int main(void)
                     {
                     perror("malloc");
                     }
-                        strcpy(argv[j], next_tok);
+                        _strcpy(argv[j], next_tok);
                         printf("argv[%d] == %s\n", j, argv[j]);
             }
 
