@@ -9,5 +9,6 @@
 int _prompt(char *display);
 int str_count(char *buffer, char *delim);
 int _strlen(char *next_tok);
+char *_strcpy(char *dest, const char *src);
 
 #endif /* MAIN_H */
