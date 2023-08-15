@@ -57,14 +57,17 @@ char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char 
 
 		(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
 		if ((*argv)[*j] == NULL)
-				perror("malloc");
+				{
+					perror("malloc");
+					return(NULL);
+				}
 
 		_strcpy((*argv)[*j], *next_tok);
 				printf("argv[%d] == %s\n", *j, (*argv)[*j]);
 
 		while (*next_tok != NULL)
 		{
-			*j++;
+			(*j)++;
 			*next_tok = strtok(NULL, delim);
 
 			/* printf("argv[%d] == %s\n", *j, *next_tok); */
@@ -72,7 +75,10 @@ char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char 
 					{
 						(*argv)[*j] = (char *)malloc(sizeof(char) * (_strlen(*next_tok) + 1));
 						if ((*argv)[*j] == NULL)
-							perror("malloc allocation failed");
+						{
+							perror("malloc");
+							return(NULL);
+						}
 
 						_strcpy((*argv)[*j], *next_tok);
 						printf("argv[%d] == %s\n", *j, (*argv)[*j]);
@@ -80,5 +86,5 @@ char **_strpars(int *j, char **next_tok, char **buffer, const char *delim, char 
 
 		}
 
-		return ((*argv));
+		return (*argv);
 }
