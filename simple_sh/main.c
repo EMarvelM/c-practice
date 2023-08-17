@@ -13,7 +13,7 @@
 
 int main(int ac, char *agv, char **env)
 {
-	size_t n = 0;
+	size_t n = 0, get_status;
 	char *buffer = NULL;
 	/* tokenization */
 	char *delim = " \n";
@@ -25,7 +25,14 @@ int main(int ac, char *agv, char **env)
 	while (1)
 	{
 		_prompt("$ ");
-		getline(&buffer, &n, stdin);
+		get_status = _getline(&buffer, &n, stdin);
+		
+		// if (get_status == -1)
+		// {
+		// 	if (get_status ==)
+		// 	perror("getline returned error");
+		// 	return (-1);
+		// }
 
 		/* counting all arguments */
 		count_tok = str_count(buffer, delim);
@@ -38,7 +45,7 @@ int main(int ac, char *agv, char **env)
 
 		/* parsing into argv*/
 		_strpars(&j, &next_tok, &buffer, delim, &argv);
-		_execve(buffer, argv, env);
+		// _execve(buffer, argv, env);
 
 		for (int k = 0; k < j; k++)
 		{
@@ -63,6 +70,7 @@ int main(int ac, char *agv, char **env)
 */
 int _execve(const char *pathname, char *const argv[], char *const envp[])
 {
+	// execve(pathname, **argv, **envp);
 
 	return (0);
 }
