@@ -2,7 +2,7 @@
 
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	fflush(stdout);
+	// fflush(stdout);
 
 	int i = 0;
 
@@ -26,17 +26,18 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		}
 
 		char c;
-		while((read(STDIN_FILENO, &c, *n)) == 1 && c != '\n')
+		while((read(STDOUT_FILENO, &c, *n)) == 1 && c != '\n')
 		{
 			(*lineptr)[i] = c;
 			i++;
-			*lineptr = (char *)realloc(*lineptr,  (sizeof(char) + (size_byte - 2)));
+			*lineptr = (char *)realloc(*lineptr,  (sizeof(char) + (1)));
 		}
 		(*lineptr)[i] = '\n';
 		(*lineptr)[i++] = '\0';
-
-	}
+	
 	*n = i;
+	}
+	
 
 
 	return (*n);

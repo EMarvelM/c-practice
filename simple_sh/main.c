@@ -25,14 +25,23 @@ int main(int ac, char *agv, char **env)
 	while (1)
 	{
 		_prompt("$ ");
-		get_status = _getline(&buffer, &n, stdin);
+		get_status = getline(&buffer, &n, stdin);
 		
-		// if (get_status == -1)
-		// {
-		// 	if (get_status ==)
-		// 	perror("getline returned error");
-		// 	return (-1);
-		// }
+		if (get_status == -1)
+		{
+			if (feof(stdin))
+			{
+				perror("End of file");
+				free(buffer);
+				exit (EXIT_FAILURE);
+			}
+			else
+			{
+				perror("getline failed");
+				free(buffer);
+				exit (EXIT_FAILURE);
+			}
+		}
 
 		/* counting all arguments */
 		count_tok = str_count(buffer, delim);
@@ -45,7 +54,7 @@ int main(int ac, char *agv, char **env)
 
 		/* parsing into argv*/
 		_strpars(&j, &next_tok, &buffer, delim, &argv);
-		// _execve(buffer, argv, env);
+		_execve(argv[0], argv, env);
 
 		for (int k = 0; k < j; k++)
 		{
@@ -68,9 +77,40 @@ int main(int ac, char *agv, char **env)
  * Return: 0 on success, -1 on error
  *
 */
-int _execve(const char *pathname, char *const argv[], char *const envp[])
+int _execve(const char *command, char *const argv[], char *const envp[])
 {
-	// execve(pathname, **argv, **envp);
+	if (command == NULL || command[0] == '\0')
+		return 1;
 
-	return (0);
+	if (execute_external_command(command, argv) == 0)
+		return (0);
+
+	/* Handle the case where the command is not found */
+	printf("%s: command not found\n", command);
+	return (1);
+}
+
+int execute_external_command(const char *command, char *const argv[])
+{
+	pid_t pid;
+	int status;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(command, argv, environ);
+		exit(EXIT_FAILURE); /* If execve fails */
+	}
+	else if (pid < 0)
+	{
+		perror("Fork error");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+
+	}
+
+	return status;
 }
