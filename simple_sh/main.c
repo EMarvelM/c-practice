@@ -26,22 +26,23 @@ int main(int ac, char *agv, char **env)
 	{
 		_prompt("$ ");
 		get_status = getline(&buffer, &n, stdin);
-		
+
 		if (get_status == -1)
 		{
 			if (feof(stdin))
 			{
 				perror("End of file");
 				free(buffer);
-				exit (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 			else
 			{
 				perror("getline failed");
 				free(buffer);
-				exit (EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 		}
+
 
 		/* counting all arguments */
 		count_tok = str_count(buffer, delim);
@@ -61,6 +62,13 @@ int main(int ac, char *agv, char **env)
 			free(argv[k]);
 		}
 		free(argv);
+
+		/* if in interative like: echo "/bin/ls" | ./simple_shell */
+		if (isatty(STDIN_FILENO) == 0)
+		{
+			free(buffer);
+			exit(EXIT_SUCCESS);
+		}
 	}
 
 	free(buffer);
@@ -80,7 +88,7 @@ int main(int ac, char *agv, char **env)
 int _execve(const char *command, char *const argv[], char *const envp[])
 {
 	if (command == NULL || command[0] == '\0')
-		return 1;
+		return (1);
 
 	if (execute_external_command(command, argv) == 0)
 		return (0);
@@ -112,5 +120,5 @@ int execute_external_command(const char *command, char *const argv[])
 
 	}
 
-	return status;
+	return (status);
 }
