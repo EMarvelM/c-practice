@@ -5,8 +5,17 @@ gcc -o simple_shell *.c *.h
 
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
-    echo "Compilation successful! Running './simple_shell'..."
-    ./simple_shell
+    #echo "Compilation successful! Copying and running '~/simple_shell'..."
+
+    # Copy the binary to the home directory
+    cp simple_shell ~/
+
+    # Execute the copied binary
+    chmod +x ~/simple_shell
+    ~/simple_shell
+
+    # Remove the copied binary after execution
+    rm -f ~/simple_shell
 else
     echo "Compilation failed."
 fi

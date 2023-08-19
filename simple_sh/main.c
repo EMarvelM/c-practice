@@ -85,20 +85,59 @@ int main(int ac, char *agv, char **env)
  * Return: 0 on success, -1 on error
  *
 */
-int _execve(const char *command, char *const argv[], char *const envp[])
+int _execve(const char *command, char *const argv[], char *envp[])
 {
+	int z;
+	char *path = NULL;
+	char *temp = NULL;
+	char *head = NULL;
+	char *delim = ":";
+
+	for (z = 0; envp[z] != NULL; z++)
+	{
+		if(strncmp(envp[z], "PATH=", (size_t)5) == 0)
+		{
+			path = strdup(envp[z]);
+		}
+	}
+	printf("%s", path);
+	temp = path;
+	for (; *temp != '='; )
+	{
+		temp++;
+	}
+	temp++;
+	envp[z] = path;
+	path = temp++;
+
+	/* counting all arguments */
+	int count_tok, j;
+	char **argp;
+	char *next_tok = NULL;
+		count_tok = str_count(path, delim);
+		argp = (char **)malloc(sizeof(char *) * count_tok);
+		if (argp == NULL)
+		{
+			perror("malloc failed");
+			return (1); /* return non-zero for failure */
+		}
+
+		/* parsing into argv*/
+		_strpars(&j, &next_tok, &path, delim, &argp);
+		
 	if (command == NULL || command[0] == '\0')
 		return (1);
 
-	if (execute_external_command(command, argv) == 0)
+	if (execute_external_command(command, argv, argp) == 0)
 		return (0);
 
 	/* Handle the case where the command is not found */
 	printf("%s: command not found\n", command);
+	free(envp[z]);
 	return (1);
 }
 
-int execute_external_command(const char *command, char *const argv[])
+int execute_external_command(const char *command, char *const argv[], char *const environ[])
 {
 	pid_t pid;
 	int status;
@@ -117,7 +156,6 @@ int execute_external_command(const char *command, char *const argv[])
 	else
 	{
 		waitpid(pid, &status, 0);
-
 	}
 
 	return (status);
