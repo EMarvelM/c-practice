@@ -22,19 +22,21 @@ unsigned int binary_to_uint(const char *b)
 	{
 		if (b[track] == '1')
 		{
-			1 << power;
+			result = result + (1 << power);
 			power++;
 		}
 		else if (b[track] == '0')
 		{
 			power++;
 		}
-		else{
+		else
+		{
 			return (0);
 		}
 		track--;
 
-		return (result);
 	}
+	
+	return (result);
 	/* printf("the value of track = %d\n", track); */
 }
