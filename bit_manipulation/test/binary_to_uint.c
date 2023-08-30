@@ -8,34 +8,27 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-    int i = 0;
-    int j = 1;
-    int value = 1;
-    if (b[1] == '0')
-    {
-        value = 0;
-    }
-    while (b)
-    {
-        if (b[i] == '1' || b[i] == '0')
-        {
-            if (b[i] == '1')
-            {
-                value += 1 * j;
-                j *= 2;
-            }
-            else if (b[i] == '0')
-            {
-                j *= 2;
-            }
+	int track = 0;
 
-        }
+	while(b[track] != '\0')
+	{
+		track++;
+	}
 
-        else
-        {
-            return 0;
-        }
-        i++;
-    }
-    return (value);
+	while(b[track] >= 0)
+	{
+		if (b[track] == 1)
+		{
+			printf("it is %d", b[track]);
+		}
+		else if (b[track] == 0)
+		{
+			printf("actually = %d", b[track]);
+		}
+		else{
+			printf("not a digit");
+		}
+		track--;
+	}
+	/* printf("the value of track = %d\n", track); */
 }
