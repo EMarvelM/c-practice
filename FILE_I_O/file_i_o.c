@@ -4,14 +4,19 @@
 /**
  * main - Entry point
  * 
- * Return: on success 0.
+ * Return: on success 0, or 1 on error
  * 
  * open, process, close
 */
 
 int main(void)
 {
-    FILE *fp = fopen("filename1.txt", "a");
+    FILE *fp = fopen("filename.txt", "a");
+
+    if (!fp)
+    {
+        return (1);
+    }
 
     /* fprintf(fp, "marvel%d\n", 4); */
 
