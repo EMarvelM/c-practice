@@ -22,8 +22,8 @@ int main(void)
 
     while (i < 2)
     {
-    
-        while ((ch = fgetc(fp)) != EOF)
+        while (!(feof(fp)))
+        /* while ((ch = fgetc(fp)) != EOF) */
         {
             printf("%c", ch);
         }
