@@ -5,6 +5,5 @@
 
 unsigned int binary_to_uint(const char *b);
 void print_binary(unsigned long int n);
-unsigned long int modu2(unsigned long int *digit);
 
 #endif /* MAIN_H */

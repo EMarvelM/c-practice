@@ -4,7 +4,8 @@
 int main(void)
 {
     int ini_line = 1;
-    int count = 0 + ini_line;
+    int line = 0 + ini_line;
+    int xarata = 0;
     char ch;
 
     FILE *fp = NULL;
@@ -14,17 +15,19 @@ int main(void)
         exit (1);
     }
 
-    fp = fopen("create_file.c", "r");
+    fp = fopen("test.txt", "r");
 
     while((ch = fgetc(fp)) != EOF)
     {
+        xarata++;
         if(ch == '\n')
         {
-            count++;
+            line++;
         }
     }
 
-    printf("total lines = %d", count);
+    printf("\n\ntotal lines = %d", line);
+    printf("\ntotal character = %d\n", xarata);
 
     return (0);
 }
