@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    char ch;
     long int file_offs;
 
     FILE *fp;
@@ -16,11 +17,14 @@ int main(void)
     }
 
     /* handling offset */
-    fseek(fp, 6, SEEK_SET);
+    fseek(fp, 9, SEEK_SET);
 
     file_offs = ftell(fp);
 
-    printf("%ld", file_offs);
+    ch = fgetc(fp);
+
+    printf("\nThe character '%c'", ch);
+    printf(" is the %ld in the file\n", file_offs);
 
     fclose(fp);
     return (0);
