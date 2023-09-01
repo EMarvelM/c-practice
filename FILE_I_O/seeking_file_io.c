@@ -1,6 +1,15 @@
 #include <stdio.h>
 
-int main()
+int main(void)
 {
-    
+    FILE *fp;
+    fp = NULL;
+        /* File pointer error checker */
+    if (fp)
+    {
+        printf("error with file pointer");
+        exit(1);
+    }
+
+
 }
