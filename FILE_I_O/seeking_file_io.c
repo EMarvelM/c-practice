@@ -3,6 +3,7 @@
 
 int main(void)
 {
+    int i = 0;
     char ch;
 
     FILE *fp;
@@ -19,9 +20,16 @@ int main(void)
     /* Processing the file */
     fseek(fp, 10, SEEK_SET);
 
-    while ((ch = fgetc(fp)) != EOF)
+    while (i < 2)
     {
-        printf("%c", ch);
+    
+        while ((ch = fgetc(fp)) != EOF)
+        {
+            printf("%c", ch);
+        }
+        printf("\n\n");
+        rewind(fp);
+        i++;
     }
 
     fclose(fp);
