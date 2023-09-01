@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    int file_offs;
+    long int file_offs;
 
     FILE *fp;
     fp = NULL;
@@ -20,7 +20,8 @@ int main(void)
 
     file_offs = ftell(fp);
 
-    printf("%d", file_offs);
+    printf("%ld", file_offs);
 
+    fclose(fp);
     return (0);
 }
