@@ -13,5 +13,8 @@ int main(void)
 
     fp = open(fp);
 
+    /* Processing the file */
+    fseek(fp, 10, SEEK_SET);
+
     close(fp);
 }
