@@ -2,6 +2,8 @@
 
 int main(void)
 {
+    char ch;
+
     FILE *fp;
     fp = NULL;
         /* File pointer error checker */
@@ -15,6 +17,11 @@ int main(void)
 
     /* Processing the file */
     fseek(fp, 10, SEEK_SET);
+
+    while ((ch = fgetc) != EOF)
+    {
+        printf("%c", ch);
+    }
 
     close(fp);
 }
