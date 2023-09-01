@@ -22,9 +22,10 @@ int main(void)
 
     while (i < 2)
     {
-        while (!(feof(fp)))
-        /* while ((ch = fgetc(fp)) != EOF) */
+        /* while (!feof(fp)) // not a standard way of reading characters */
+        while ((ch = fgetc(fp)) != EOF)
         {
+            /* ch = fgetc(fp); */
             printf("%c", ch);
         }
         printf("\n\n");
