@@ -1,2 +1,11 @@
-marvelous
-marvi
+create
+open
+process
+close
+
+rewind
+seek
+
+fprintf
+fgetch
+feof
