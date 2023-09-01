@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
@@ -13,15 +14,17 @@ int main(void)
         exit(1);
     }
 
-    fp = open(fp);
+    fp = fopen("test.txt", "r+");
 
     /* Processing the file */
     fseek(fp, 10, SEEK_SET);
 
-    while ((ch = fgetc) != EOF)
+    while ((ch = fgetc(fp)) != EOF)
     {
         printf("%c", ch);
     }
 
-    close(fp);
+    fclose(fp);
+
+    return (0);
 }
