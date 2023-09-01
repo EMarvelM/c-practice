@@ -16,6 +16,7 @@ int main(void)
     }
 
     /* handling offset */
+    fseek(fp, 6, SEEK_SET);
 
     file_offs = ftell(fp);
 
