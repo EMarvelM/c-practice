@@ -11,5 +11,7 @@ int main(void)
         exit(1);
     }
 
-    fp = open(test.txt);
+    fp = open(fp);
+
+    close(fp);
 }
