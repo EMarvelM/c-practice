@@ -29,7 +29,7 @@ int main(void)
         getline(&str, &n, stdin);
 
         printf("%s", str);
-        fprintf(fp, "%s\n", str);
+        fprintf(fp, "%s", str);
     } while(strcmp(str, "q\n"));
 
     free(str);
