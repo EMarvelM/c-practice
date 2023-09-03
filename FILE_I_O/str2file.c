@@ -20,6 +20,10 @@ int main(void)
         exit(1);
     }
 
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    fprintf(fp, "%s\n", str);
 
     fclose(fp);
     return (0);
