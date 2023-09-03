@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 /**
@@ -9,6 +10,7 @@
 int main(void)
 {
     char *str = NULL;
+    size_t n = 0;
 
     FILE *fp;
     fp = NULL;
@@ -21,8 +23,9 @@ int main(void)
     }
 
     printf("Enter a string: ");
-    scanf("%s", str);
+    getline(&str, &n, stdin);
 
+    printf("%s", str);
     fprintf(fp, "%s\n", str);
 
     fclose(fp);
