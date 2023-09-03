@@ -10,6 +10,7 @@
 int main(void)
 {
 	int nums;
+	int count = 0;
 	FILE *fp = NULL;
 
 	fp = fopen("number.txt", "w+");
@@ -27,7 +28,10 @@ int main(void)
 
 		if (nums == -1)
 			break;
-		fprintf(fp ,"%d\n", nums);
+		if (count != 0)
+			fprintf(fp ,"\n");
+		fprintf(fp ,"%d", nums);
+		count++;
 	} while (nums != -1);
 
 
