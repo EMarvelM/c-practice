@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo "Git Add, Commit, and Push Script"
+echo "---------------------------------"
+
+# Check if there is a command line argument
+if [ -n "$1" ]; then
+  # Get all of the file names from the command line arguments
+  file_names="$*"
+
+  # Add all of the files to the staging area
+  for file_name in $file_names; do
+    git add "$file_name"
+  done
+
+  # Prompt the user to enter a commit message
+  read -p "Enter your commit message: " commit_message
+
+  # Commit with the provided commit message
+  git commit -m "$commit_message"
+
+  # Push changes to the remote repository
+  git push
+
+  echo "Git push completed successfully."
+else
+  # Prompt the user to enter a commit message
+  read -p "Enter your commit message: " commit_message
+
+  # Add all files to staging area
+  git add .
+
+  # Commit with the provided commit message
+  git commit -m "$commit_message"
+
+  # Push changes to the remote repository
+  git push
+
+  echo "Git push completed successfully."
+fi

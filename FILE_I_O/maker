@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Function to list remaining .c files not included in command line arguments
+list_remaining_files() {
+  echo "Remaining files:"
+  for i in "${!remaining_files[@]}"; do
+    echo "$i. ${remaining_files[i]}"
+  done
+}
+
+# List all .c files in numeric order
+c_files=($(ls -1 *.c))
+remaining_files=("${c_files[@]}")
+
+# Check for command line argument
+if [[ $# -gt 0 ]]; then
+  selected_files=("$@")
+  list_remaining_files
+while [[ $add_more != "y" && $add_more != "n" ]]; do
+  echo -e " "
+  echo -e "------------------------------------------------"
+  echo -e "Do you want to add more files to the compilation?"
+  read -n 1 -s -r -p "Please enter 'y' or 'n': " add_more
+done
+
+if [[ $add_more == "y" ]]; then
+    read -p "Enter the numbers of the files you want to add (separated by spaces or commas): " additional_nums
+    IFS=", " read -ra additional_arr <<< "$additional_nums"
+    for num in "${additional_arr[@]}"; do
+      selected_files+=("${remaining_files[num]}")
+    done
+  fi
+else
+  for i in "${!c_files[@]}"; do
+    echo "$i. ${c_files[i]}"
+  done
+  read -p "Enter the numbers of the files you want to compile (separated by spaces or commas): " selected_nums
+  IFS=", " read -ra selected_arr <<< "$selected_nums"
+  selected_files=()
+  for num in "${selected_arr[@]}"; do
+    selected_files+=("${c_files[num]}")
+    unset "remaining_files[num]"
+  done
+fi
+
+if [[ ${#selected_files[@]} -gt 0 ]]; then
+  if gcc -Wall -pedantic -Werror -Wextra -std=gnu89 -o main "${selected_files[@]}"; then
+    echo "Compiled ${selected_files[@]} together"
+
+    # Execute compiled program
+    ./main
+
+    # Delete compiled program
+    rm -f main
+    rm -f main.h.gch
+  else
+    echo "Compilation failed. Exiting."
+  fi
+else
+  echo "No files selected for compilation."
+fi
