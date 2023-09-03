@@ -28,6 +28,8 @@ int main(void)
         printf("Enter a string(q to exit): ");
         getline(&str, &n, stdin);
 
+        if(!strcmp(str, "q\n"))
+            break;
         fprintf(fp, "%s", str);
     } while(strcmp(str, "q\n"));
 
