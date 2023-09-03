@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * main - Entry Point
@@ -22,11 +23,14 @@ int main(void)
         exit(1);
     }
 
-    printf("Enter a string: ");
-    getline(&str, &n, stdin);
 
-    printf("%s", str);
-    fprintf(fp, "%s\n", str);
+    do {
+        printf("Enter a string(q to exit): ");
+        getline(&str, &n, stdin);
+
+        printf("%s", str);
+        fprintf(fp, "%s\n", str);
+    } while(strcmp(str, "q\n"));
 
     free(str);
     fclose(fp);
