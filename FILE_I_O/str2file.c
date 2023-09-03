@@ -28,6 +28,7 @@ int main(void)
     printf("%s", str);
     fprintf(fp, "%s\n", str);
 
+    free(str);
     fclose(fp);
     return (0);
 }
