@@ -24,6 +24,9 @@ int main(void)
 	do {
 		printf("Enter a #(-1 to quit): ");
 		scanf("%d", &nums);
+
+		if (nums == -1)
+			break;
 		fprintf(fp ,"%d\n", nums);
 	} while (nums != -1);
 
