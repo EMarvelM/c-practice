@@ -7,13 +7,19 @@
  * Returns: 0 on success.
 */
 
-int main(void)
+int main(int argc, char **argv)
 {
 	int nums;
 	int count = 0;
 	FILE *fp = NULL;
+	char *name;
 
-	fp = fopen("number.txt", "w+");
+	if (argv[1] != NULL)
+		name = argv[1];
+	else
+		name = "default";
+
+	fp = fopen(name, "w+");
 	if (!fp)
 	{
 		printf("error opening file");
