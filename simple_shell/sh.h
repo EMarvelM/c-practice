@@ -6,4 +6,8 @@
 #include <stdlib.h> /* exit */
 #include <errno.h> /* ENIVAL, */
 
+
+void sh_prompt(char *disp);
+void read_cmd(void);
+
 #endif /* SH_H */
