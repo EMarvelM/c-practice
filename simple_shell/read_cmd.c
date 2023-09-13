@@ -38,10 +38,31 @@ char *read_cmd(void)
 	return (buffer);
 }
 
-_tokenise(cher *buffer, char *delim)
+void _tokenise(char *buffer, char *delim)
+{
+	int total_token;
+
+	total_token = _count_tok(buffer, delim);
+	printf("number of token == %d\n", total_token);
+}
+
+int _count_tok(char *buffer, char *delim)
 {
 	char *next_token = NULL;
-	char **argv;
+	int count = 0;
 
 	next_token = strtok(buffer, delim);
+	count++;
+
+	while (next_token)
+	{
+		next_token = strtok(NULL, delim);
+
+		/* if the next next_token is NULL dont count */
+		if (next_token != NULL)
+		{
+			count++;
+		}
+	}
+	return (count);
 }
