@@ -9,6 +9,8 @@
 
 void sh_prompt(char *disp);
 void read_cmd(void);
-void cmd_mode(void); /* isatty check here */
+
+ /* isatty check here */
+void cmd_mode(void);
 
 #endif /* SH_H */
