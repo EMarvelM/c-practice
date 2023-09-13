@@ -1,5 +1,11 @@
 #include "sh.h"
 
+/**
+ * sh_prompt - write to the stdout
+ * @disp: string to be writing to stdout
+ *
+ * Return: void.
+*/
 void sh_prompt(char *disp)
 {
 	int i = 0;
@@ -9,5 +15,5 @@ void sh_prompt(char *disp)
 		i++;
 	}
 
-	write(STDOUT_FILENO, disp, i);	
+	write(STDOUT_FILENO, disp, i);
 }
