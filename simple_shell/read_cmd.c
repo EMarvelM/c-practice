@@ -5,7 +5,7 @@
  *
  * Return: void
 */
-void read_cmd(void)
+char *read_cmd(void)
 {
 		/* getline */
 	char *buffer = NULL;
@@ -28,5 +28,7 @@ void read_cmd(void)
 		}
 	}
 
-	free(buffer);
+	/* tokenization comes here!!! */
+
+	return (buffer);
 }
