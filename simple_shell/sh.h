@@ -8,7 +8,7 @@
 
 
 void sh_prompt(char *disp);
-void read_cmd(void);
+char *read_cmd(void);
 
  /* isatty check here */
 void cmd_mode(void);
