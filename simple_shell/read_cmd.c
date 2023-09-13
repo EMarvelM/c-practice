@@ -18,17 +18,21 @@ char *read_cmd(void)
 	{
 		if (char_n == (size_t)EOF && errno == 0)
 		{
+			free(buffer);
 			perror("\nEOF Reached!");
 			exit(1);
 		}
 		else if (errno == EINVAL || errno == ENOMEM)
 		{
+			free(buffer);
 			perror("\ngetline error!");
 			exit(1);
 		}
 	}
 
+
 	/* tokenization comes here!!! */
+	printf("argv == %s", buffer);
 
 	return (buffer);
 }
