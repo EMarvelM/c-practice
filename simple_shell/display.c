@@ -15,5 +15,13 @@ void sh_prompt(char *disp)
 		i++;
 	}
 
-	write(STDOUT_FILENO, disp, i);
+	int err_check;
+
+	err_check = write(STDOUT_FILENO, disp, i);
+	/* check for error */
+	if (err_check == -1)
+	{
+		perror("Error writing to stdout");
+		exit(-1)
+	}
 }
