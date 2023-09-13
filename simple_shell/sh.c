@@ -1,8 +1,13 @@
 #include "sh.h"
 
+/**
+ * main - shell starting point
+ *
+ * Return: 0 at success.
+*/
 int main(void)
 {
-	while(1) 
+	while (1)
 	{
 		sh_prompt("Cisfun# ");
 		read_cmd();
@@ -12,5 +17,3 @@ int main(void)
 	}
 	return (0);
 }
-
-
