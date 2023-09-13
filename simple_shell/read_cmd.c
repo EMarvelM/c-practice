@@ -32,7 +32,16 @@ char *read_cmd(void)
 
 
 	/* tokenization comes here!!! */
+	_tokenise(buffer, " \n");
 	printf("argv == %s", buffer);
 
 	return (buffer);
+}
+
+_tokenise(cher *buffer, char *delim)
+{
+	char *next_token = NULL;
+	char **argv;
+
+	next_token = strtok(buffer, delim);
 }
