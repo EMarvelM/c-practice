@@ -33,7 +33,9 @@ char *read_cmd(void)
 
 	/* tokenization comes here!!! */
 	_tokenise(buffer, " \n");
-	printf("argv == %s", buffer);
+
+	/* testing */
+	printf("argv == %s\n", buffer);
 
 	return (buffer);
 }
@@ -43,6 +45,8 @@ void _tokenise(char *buffer, char *delim)
 	int total_token;
 
 	total_token = _count_tok(buffer, delim);
+
+	/* testing */
 	printf("number of token == %d\n", total_token);
 }
 
