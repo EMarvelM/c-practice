@@ -35,11 +35,19 @@ char *read_cmd(void)
 	_tokenise(buffer, " \n");
 
 	/* testing */
-	printf("argv == %s\n", buffer);
+	/* printf("argv == %s\n", buffer); */
 
 	return (buffer);
 }
 
+
+/**
+ * _tokenise - tokenize the string in the buffer(stream)
+ * @buffer: the buffer to tokenize
+ * @delim: the delimeter for the string in the buffer
+ *
+ * Return: void.
+*/
 void _tokenise(char *buffer, char *delim)
 {
 	int total_token;
@@ -47,9 +55,18 @@ void _tokenise(char *buffer, char *delim)
 	total_token = _count_tok(buffer, delim);
 
 	/* testing */
-	printf("number of token == %d\n", total_token);
+	/* printf("number of token == %d\n", total_token); */
 }
 
+
+/**
+ * _count_tok - count number of tokens in the stream
+ * to know amount of memory to allocate
+ * @buffer: the buffer to count
+ * @delim: the delimeter for the string in the buffer
+ *
+ * Return: number of token count
+*/
 int _count_tok(char *buffer, char *delim)
 {
 	char *next_token = NULL;
