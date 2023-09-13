@@ -9,19 +9,18 @@
 void sh_prompt(char *disp)
 {
 	int i = 0;
+	int err_check;
 
 	while (disp[i] != '\0')
 	{
 		i++;
 	}
 
-	int err_check;
-
 	err_check = write(STDOUT_FILENO, disp, i);
 	/* check for error */
 	if (err_check == -1)
 	{
 		perror("Error writing to stdout");
-		exit(-1)
+		exit(-1);
 	}
 }
