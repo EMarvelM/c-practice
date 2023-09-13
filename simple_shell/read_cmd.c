@@ -51,8 +51,14 @@ char *read_cmd(void)
 void _tokenise(char *buffer, char *delim)
 {
 	int total_token;
+	char **argv
 
 	total_token = _count_tok(buffer, delim);
+
+	//TODO: allocate memory for argv
+	//TODO: allocate memory for argv[]
+	//TODO: parse tokens into argv[]
+	//TODO: pass the argv to the execve
 
 	/* testing */
 	/* printf("number of token == %d\n", total_token); */
