@@ -1,5 +1,10 @@
 #include "sh.h"
 
+/**
+ * read_cmd - read for user input (stdin).
+ *
+ * Return: void
+*/
 void read_cmd(void)
 {
 		/* getline */
