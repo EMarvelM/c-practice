@@ -7,17 +7,16 @@
 */
 int main(void)
 {
-	char *buffer;
+	char **argv = NULL;
 
 	while (1)
 	{
 		sh_prompt("Cisfun# ");
-		buffer = read_cmd();
+		argv = read_cmd();
 
 		/* isatty check here */
 		cmd_mode();
-
-		free(buffer);
+		free(argv);
 	}
 
 	return (0);
