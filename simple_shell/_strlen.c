@@ -17,5 +17,5 @@ size_t _strlen(const char *_string)
     /*testing works :)*/
     /*printf("_strlen == %d", count);*/
 
-    return (count)
+    return (count);
 }
