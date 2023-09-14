@@ -18,6 +18,6 @@ void _tokenise(char *buffer, char *delim);
 
 size_t _count_tok(char *buffer, char *delim);
 
-size_t _strlen(const char *_string);
+size_t _strlen(char *_string);
 
 #endif /* SH_H */

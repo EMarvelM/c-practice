@@ -5,17 +5,17 @@
  * 
 */
 
-size_t _strlen(const char *_string)
+size_t _strlen(char *_string)
 {
     size_t count = 0;
 
-    while(_string[count] != '\0')
+    while(_string[count])
     {
         if (_string[count])
             count++;
     }
     /*testing works :)*/
-    /*printf("_strlen == %d", count);*/
+    printf("_strlen == %ld", count);
 
     return (count);
 }
