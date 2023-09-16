@@ -23,7 +23,6 @@ char **read_cmd(void)
 	if (sign_c == 0)
 	sign = (uintptr_t) signal(SIGINT, sigintHandler);
 
-
 	/*free if Ctrl + C*/
 	if (sign == SIGINT)
 	{
@@ -57,6 +56,7 @@ char **read_cmd(void)
 
 void sigintHandler(int signum)
 {
+	/*just decieving the standard c90 flag checker*/
 	signum++;
 	signum--;
 }
