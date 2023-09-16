@@ -24,5 +24,6 @@ size_t _strlen(const char *_string);
 
 void _free(char **argv);
 void sigintHandler(int signum);
+void check_malloc(char *tmp);
 
 #endif /* SH_H */
