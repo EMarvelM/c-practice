@@ -23,6 +23,6 @@ size_t _count_tok(char *buffer, char *delim);
 size_t _strlen(const char *_string);
 
 void _free(char **argv);
-
+void sigintHandler(int signum);
 
 #endif /* SH_H */
