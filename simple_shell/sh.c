@@ -16,8 +16,13 @@ int main(void)
 
 		/* isatty check here */
 		cmd_mode();
-		free(argv);
+
+		if(argv != NULL)
+		{
+			_free(argv);
+		}
 	}
 
 	return (0);
 }
+
