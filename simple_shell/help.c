@@ -49,3 +49,17 @@ void check_malloc(char *tmp)
 		exit(1);
 	}
 }
+
+void _free(char **argv)
+{
+	int j = 0;
+
+	while (argv[j] != NULL)
+	{
+		free(argv[j]);
+		j++;
+	}
+	free(argv[j]); /*free the NULL*/
+	free(argv);
+	printf("total == %d\n", j);
+}
