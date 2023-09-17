@@ -10,26 +10,24 @@
 char **_tokenise(char *buffer, char *delim)
 {
 	int j = 0;
-	size_t total_token = 0;
-	size_t str_lenthh = 0;
+	size_t total_token = 0, str_lenthh = 0;
 	char *next_token = NULL;
 	char **argp = NULL;
 
 	total_token = _count_tok(buffer, delim); /*counting the number of tokens*/
-    /*add one for the NULL pointer*/
 	argp = (char **)malloc(sizeof(char *) * (total_token + (size_t)1));
+	checkArgp(argp, buffer);
 
 	next_token = strtok(buffer, delim);
 	if (!next_token)
 	{
-		perror("initiale token error");
-		exit(1);
+		free(buffer);/*IF FIRST VALUE IS A NULL*/
+		return (NULL);
 	}
 
 	str_lenthh = _strlen(next_token);
-
-
 	argp[j] = (char *)malloc(sizeof(char) * (str_lenthh + (size_t)1));
+	check_malloc(argp[j]);
 	strcpy(argp[j], next_token);
 
 	while (next_token)
@@ -40,14 +38,15 @@ char **_tokenise(char *buffer, char *delim)
 		if (next_token != NULL)
 		{
 			str_lenthh = _strlen(next_token);
-
 			argp[j] = (char *)malloc(sizeof(char) * (str_lenthh + (size_t)1));
+			check_malloc(argp[j]);
 			strcpy(argp[j], next_token); /*we dont wanna copy the NULL*/
 		}
+		else if (next_token == NULL)
+		argp[j] = NULL;
 	}
+	argp = testArgv(argp);
 
-	/* testing */
-	/* printf("number of token == %d\n", total_token); */
-
-    return(argp);
+	free(buffer);
+	return (argp);
 }
