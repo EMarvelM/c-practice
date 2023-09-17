@@ -11,6 +11,8 @@ void sh_prompt(char *disp)
 	int i = 0;
 	int err_check;
 
+	fflush(stdout); /*flush stdout before writing to avoid always offset 0*/
+
 	while (disp[i] != '\0')
 	{
 		i++;
