@@ -69,3 +69,20 @@ char **testArgv(char **argp)
 
 	return (argp);
 }
+
+/**
+ * checkArgp - free argp if null (malloc failure)
+ * @argp: string pointer array to free
+ * @buffer: free to avoid mem leak
+ *
+ * Return: void
+*/
+void checkArgp(char **argp, char *buffer)
+{
+	if (argp == NULL)
+	{
+		perror("malloc failed!");
+		free(buffer);
+		exit(1);
+	}
+}
