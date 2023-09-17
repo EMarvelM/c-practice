@@ -25,5 +25,9 @@ size_t _strlen(const char *_string);
 void _free(char **argv);
 void sigintHandler(int signum);
 void check_malloc(char *tmp);
+void checkArgp(char **argp, char *buffer);
+
+/*remove*/
+char **testArgv(char **argp);
 
 #endif /* SH_H */
