@@ -17,7 +17,8 @@ size_t _count_tok(char *buffer, char *delim)
 
 	str_lenth = _strlen(buffer);
 
-	temp = (char *)malloc(sizeof(char) * (str_lenth));
+	temp = (char *)malloc(sizeof(char) * (str_lenth + 1));
+	check_malloc(temp);
 	strcpy(temp, buffer);
 
 	next_token = strtok(temp, delim);
@@ -35,6 +36,8 @@ size_t _count_tok(char *buffer, char *delim)
 	}
 	/*testing*/
     /*printf("\ntotal token == %ld\n", count);*/
-
+    free(temp);
 	return (count);
 }
+
+
