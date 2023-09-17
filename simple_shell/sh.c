@@ -17,7 +17,7 @@ int main(void)
 		/* isatty check here */
 		cmd_mode();
 
-		if(argv != NULL)
+		if (argv != NULL)
 		{
 			_free(argv);
 		}
