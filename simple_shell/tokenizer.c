@@ -50,3 +50,22 @@ char **_tokenise(char *buffer, char *delim)
 	free(buffer);
 	return (argp);
 }
+
+/**
+ * testArgv - prints the arguments in the **argp
+ * @argp: string pointer array to print
+ * To be Removed cause printf not suppored!
+ *
+ * Return: char **argp(string pointer array)
+*/
+char **testArgv(char **argp)
+{
+	int j;
+
+	for (j = 0; argp[j] != NULL; j++)
+	{
+		printf("argp %d == %s\n", j, argp[j]);
+	}
+
+	return (argp);
+}
