@@ -41,3 +41,11 @@ size_t _count_tok(char *buffer, char *delim)
 }
 
 
+void check_malloc(char *tmp)
+{
+	if (!tmp)
+	{
+		perror("Malloc failed!");
+		exit(1);
+	}
+}
