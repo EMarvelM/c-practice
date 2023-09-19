@@ -193,5 +193,14 @@ int _execve(char **argv, char *ready4exc, char **depath)
 			}
 		}
 	}
+	else if(pidt == -1)
+	{
+		perror("child process failed");
+	}
+	else
+	{
+		wait(&status);
+	}
 	
+	return (status);
 }
