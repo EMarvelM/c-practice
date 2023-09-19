@@ -18,7 +18,7 @@ int main(int ac, char **agv, char **envp)
 		argv = read_cmd();
 
 		depath = pather(envp);
-		cmd2path(depath, argv);
+		cmd2path(argv, depath);
 
 		/* isatty check here */
 		cmd_mode();
@@ -133,13 +133,26 @@ char *removePath(char *path)
 
 char **cmd2path(char **argp, char **paths)
 {
-	int i, j, new_len;
+	int i = 0, j = 0, new_len = 0, count = 0;
+	char **new_paths;
 
-	new_len = (strlen(argp) + strlen(paths) + 1);/*adding 1 for null*/
-	paths[i] = realloc(paths[i], new_len)
+	while (paths[count] != NULL)
+	{
+		count++;
+	}
+
+	new_paths = (char **)malloc(sizeof(char *) * (count + 1));/*adding 1 for null*/
 	for (i = 0; paths[i] != NULL; i++)
 	{
-		strcat(paths[i], argp[j])
-		paths[i]
+		new_len = (strlen(argp[j]) + strlen(paths[i]) + 2);/*adding 1 for '\0'*/
+		new_paths[i] = (char *)malloc(sizeof(char) * new_len);
+		strcpy(new_paths[i], paths[i]);
+		strcat(new_paths[i], "/");
+		strcat(new_paths[i], argp[j]);
 	}
+	for (; paths[j] != NULL; j++)
+	{
+		printf("%s\n", new_paths[j]);
+	}
+	return (new_paths);
 }
