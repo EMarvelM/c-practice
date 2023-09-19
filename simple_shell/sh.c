@@ -174,3 +174,11 @@ char *cmd2path(char **argp, char **paths)
 	}
 	return (NULL);
 }
+
+int _execve(char **argv, char *ready4exc, char **depath)
+{
+	int status, check_exc = 0;
+	pid_t pidt;
+	pidt = fork();
+
+}
