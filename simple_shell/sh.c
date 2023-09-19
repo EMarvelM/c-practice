@@ -72,7 +72,9 @@ char **pather(char **envp)
 					if (test == NULL)
 						return(arr);
 
-					arr[i] = (char *)malloc(sizeof(char) * (strlen(test) + 1));
+					arr[i] = removePath(test);
+					/*removePath(test);
+					arr[i] = (char *)malloc(sizeof(char) * (strlen(test) + 1));*/
 					printf("%s\n", arr[i]);
 					
 					if (arr[i] == NULL)
@@ -101,4 +103,30 @@ char **pather(char **envp)
 	}
 
 	return (arr);
+}
+
+
+char *removePath(char *path)
+{
+	int i = 0;
+	int len;
+	char *temp;
+
+	if (!path)
+	{
+		return (NULL);
+	}
+
+	len = strlen(path);
+	temp = (char *)malloc(sizeof(char) * (len - 4)); /*-5 for PATH=*/
+
+	while(path[i])
+	{
+		if (i > 4)
+		{
+			temp[i - 5] = path[i];
+		}
+		i++;
+	}
+	return (temp);
 }
