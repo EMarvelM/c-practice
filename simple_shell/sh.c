@@ -9,6 +9,7 @@ int main(int ac, char **agv, char **envp)
 {
 	char **argv = NULL;
 	char **depath = NULL;
+	char *ready4exc = NULL;
 
 	(void)ac;
 	(void)agv;
@@ -18,7 +19,7 @@ int main(int ac, char **agv, char **envp)
 		argv = read_cmd();
 
 		depath = pather(envp);
-		cmd2path(argv, depath);
+		ready4exc = cmd2path(argv, depath);
 
 		/* isatty check here */
 		cmd_mode();
@@ -131,10 +132,22 @@ char *removePath(char *path)
 	return (temp);
 }
 
-char **cmd2path(char **argp, char **paths)
+char *cmd2path(char **argp, char **paths)
 {
+
 	int i = 0, j = 0, new_len = 0, count = 0;
 	char **new_paths;
+
+	if (argp[j][j] == '/')
+	{
+		if (!(access(argp[j], X_OK)))
+		{
+			printf("%s\n", argp[j]);
+			return(argp[j]);
+		}
+		else
+			return(NULL);
+	}
 
 	while (paths[count] != NULL)
 	{
@@ -155,7 +168,7 @@ char **cmd2path(char **argp, char **paths)
 		if(!(access(new_paths[j], X_OK)))
 		{
 			printf("%s\n", new_paths[j]);
-			return (new_paths);
+			return (new_paths[j]);
 		}
 	}
 	return (NULL);
