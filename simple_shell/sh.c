@@ -20,6 +20,7 @@ int main(int ac, char **agv, char **envp)
 
 		depath = pather(envp);
 		ready4exc = cmd2path(argv, depath);
+		_execve(argv, ready4exc, depath);
 
 		/* isatty check here */
 		cmd_mode();
