@@ -133,5 +133,13 @@ char *removePath(char *path)
 
 char **cmd2path(char **argp, char **paths)
 {
-	
+	int i, j, new_len;
+
+	new_len = (strlen(argp) + strlen(paths) + 1);/*adding 1 for null*/
+	paths[i] = realloc(paths[i], new_len)
+	for (i = 0; paths[i] != NULL; i++)
+	{
+		strcat(paths[i], argp[j])
+		paths[i]
+	}
 }
