@@ -181,4 +181,17 @@ int _execve(char **argv, char *ready4exc, char **depath)
 	pid_t pidt;
 	pidt = fork();
 
+	if (pidt == 0)
+	{
+		check_exc = execve(ready4exc, argv, depath);
+		if (check_exc == -1)
+		{
+			if (errno == ETXTBSY)
+			{
+				perror("open for writing by one or more processes");
+				exit(-1);
+			}
+		}
+	}
+	
 }
