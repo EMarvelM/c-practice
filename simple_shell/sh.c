@@ -8,6 +8,7 @@
 int main(int ac, char **agv, char **envp)
 {
 	char **argv = NULL;
+	char **depath = NULL;
 
 	(void)ac;
 	(void)agv;
@@ -16,7 +17,8 @@ int main(int ac, char **agv, char **envp)
 		sh_prompt("Cisfun# ");
 		argv = read_cmd();
 
-		pather(envp);
+		depath = pather(envp);
+		cmd2path(depath, argv);
 
 		/* isatty check here */
 		cmd_mode();
@@ -75,7 +77,6 @@ char **pather(char **envp)
 					arr[i] = removePath(test);
 					/*removePath(test);
 					arr[i] = (char *)malloc(sizeof(char) * (strlen(test) + 1));*/
-					printf("%s\n", arr[i]);
 					
 					if (arr[i] == NULL)
 					{
@@ -93,7 +94,6 @@ char **pather(char **envp)
 						exit (1);
 					}
 					strcpy(arr[i], test);
-					printf("%s\n", test);
 
 				}
 			}
@@ -129,4 +129,9 @@ char *removePath(char *path)
 		i++;
 	}
 	return (temp);
+}
+
+char **cmd2path(char **argp, char **paths)
+{
+	
 }
