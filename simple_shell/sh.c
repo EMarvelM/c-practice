@@ -152,11 +152,11 @@ char **cmd2path(char **argp, char **paths)
 	}
 	for (; paths[j] != NULL; j++)
 	{
-		if(access(new_paths, X_OK))
+		if(!(access(new_paths[j], X_OK)))
 		{
-			return (NULL);
+			printf("%s\n", new_paths[j]);
+			return (new_paths);
 		}
-		printf("%s\n", new_paths[j]);
 	}
-	return (new_paths);
+	return (NULL);
 }
