@@ -13,5 +13,6 @@ struct node{
 struct node *createNode(struct node *head, int x);
 int pop(struct node *remove);
 int push(int item);
+int peek(void);
 
 #endif /* MAIN_H */

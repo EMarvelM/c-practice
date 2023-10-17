@@ -16,7 +16,26 @@ int main(void)
     /*            TEST               */
     /*printf("popped --> %d\n", poped_i);*/
 
+    int peeked = peek();
+    /*            TEST               */
+    printf("peeked --> %d\n", peeked);
+
     return (0);
+}
+
+int peek(void)
+{
+    if (!head)
+    {
+        printf("Stack is empty");
+        return (-1);
+    }
+    struct node *tmp = head;
+    while(tmp->next)
+    {
+        tmp = tmp->next;
+    }
+    return (tmp->i);
 }
 
 int push(int item)
