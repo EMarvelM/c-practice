@@ -8,6 +8,7 @@ struct node{
 
 
 #include <stdio.h>
+#include <stdlib.h>
 
 struct node *createNode(struct node *head, int x);
 int pop(struct node *remove);
