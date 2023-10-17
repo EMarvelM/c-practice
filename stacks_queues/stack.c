@@ -24,7 +24,13 @@ int pop(struct node *remove)
     if (!remove)
     {
         printf("Empty stack!");
-        return;
+        return (-1);
+    }
+    if (!remove->next)
+    {
+        x = remove->i;
+        remove = NULL;
+        return (x);
     }
     while (remove->next->next)
     {
