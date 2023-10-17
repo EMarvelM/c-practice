@@ -18,7 +18,11 @@ int main(void)
 
     int peeked = peek();
     /*            TEST               */
-    printf("peeked --> %d\n", peeked);
+    /*printf("peeked --> %d\n", peeked);*/
+
+    bool check = is_empty();
+    /*            TEST               */
+    printf("it is --> %d\n", check);
 
     return (0);
 }
@@ -59,6 +63,7 @@ int pop(struct node *remove)
     {
         x = remove->i;
         remove = NULL;
+        free(remove->next);
         return (x);
     }
     while (remove->next->next)
@@ -94,4 +99,18 @@ struct node *createNode(struct node *head, int x)
         tmp->next = new_node;
     }
     return (head);
+}
+
+bool is_empty(void)
+{
+    if (!head)
+    {
+        printf("is empty\n");
+        return true;
+    }
+    else
+    {
+        printf("is not empty\n");
+        return false;
+    }
 }
