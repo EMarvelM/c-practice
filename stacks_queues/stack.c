@@ -13,15 +13,16 @@ int main(void)
     push(10);
     push(2);
     int poped_i = pop(head->next);
-    printf("popped --> %d", poped_i);
+    printf("popped --> %d\n", poped_i);
 
     return (0);
 }
 
-int push(item)
+int push(int item)
 {
     /*Adding to the stack*/
     head = createNode(head, item);
+    printf("head --> %d\n", head->i);
 }
 
 int pop(struct node *remove)
