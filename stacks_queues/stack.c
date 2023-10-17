@@ -17,15 +17,22 @@ int main(void)
     return (0);
 }
 
-
 int pop(struct node *remove)
 {
+    int x;
+
     if (!remove)
     {
         printf("Empty stack!");
         return;
     }
-    
+    while (remove->next->next)
+    {
+        remove = remove->next;
+    }
+    x = remove->next->i;
+    remove->next = NULL;
+    return (x);
 }
 
 struct node *createNode(struct node *head, int x)
