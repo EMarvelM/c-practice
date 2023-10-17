@@ -18,9 +18,14 @@ int main(void)
 }
 
 
-int pop(struct node remove)
+int pop(struct node *remove)
 {
-    int i;
+    if (!remove)
+    {
+        printf("Empty stack!");
+        return;
+    }
+    
 }
 
 struct node *createNode(struct node *head, int x)
