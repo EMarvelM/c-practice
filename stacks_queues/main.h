@@ -10,6 +10,6 @@ struct node{
 #include <stdio.h>
 
 struct node *createNode(struct node *head, int x);
-int pop(struct node remove);
+int pop(struct node *remove);
 
 #endif /* MAIN_H */

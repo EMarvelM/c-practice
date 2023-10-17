@@ -1,5 +1,7 @@
 #include "main.h"
 
+struct node *head = NULL;
+
 /**
  * main -  Entry point
  *
@@ -7,14 +9,19 @@
 */
 int main(void)
 {
-    int x = 5; //get this from the user (maybe in a loop)
-    /*Starting the stack*/
-    struct node *head;
-    head = NULL;
-
-    head = createNode(head, x);
+    push(5);
+    push(10);
+    push(2);
+    int poped_i = pop(head->next);
+    printf("popped --> %d", poped_i);
 
     return (0);
+}
+
+int push(item)
+{
+    /*Adding to the stack*/
+    head = createNode(head, item);
 }
 
 int pop(struct node *remove)
@@ -37,6 +44,7 @@ int pop(struct node *remove)
         remove = remove->next;
     }
     x = remove->next->i;
+    free(remove->next->next); /*free the last memory before lossing it*/
     remove->next = NULL;
     return (x);
 }
