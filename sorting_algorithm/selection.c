@@ -39,19 +39,20 @@ void selectionSort(int arr[], int n)
 	for (i = 0; i < n; i++)
 	{
 		/*while looping through array, */
-		for (j = i; j < n; j++)
+		for (j = 0; j < n; j++)
 		{
 			/*find the smallest element in the array*/
-			if (arr[j] < arr[j + 1])
+			if (arr[j] < arr[i])
 			{
 				min_idx = j;
+				/*swap the smallest element with the first element*/
+				j = arr[min_idx];
+				arr[min_idx] = arr[i];
+				arr[i] = j;
 			}
 
 		}
-		/*swap the smallest element with the first element*/
-		j = arr[min_idx];
-		arr[min_idx] = arr[i];
-		arr[i] = j;
+
 
 		printf("Sorted array:");
 		for (int j = 0; j < n; j++)
