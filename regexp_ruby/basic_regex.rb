@@ -5,7 +5,10 @@ p string =~ /quick/
 
 p string =~ /z/ ? "Valid string" : "Invalid"
 
-if string =~ /z/
+# Case insensitive
+p string =~ /z/i ? "Valid string" : "Invalid"
+
+if string =~ /Z/
     puts "valid"
 else
     puts "Invalid"
