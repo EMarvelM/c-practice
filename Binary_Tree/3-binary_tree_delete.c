@@ -9,8 +9,8 @@
 
 void binary_tree_delete(binary_tree_t *tree)
 {
-    /* if tree is null do nothing */
-    if (tree == NULL) return;
+	/* if tree is null do nothing */
+	if (tree == NULL) return;
 
 
 }
