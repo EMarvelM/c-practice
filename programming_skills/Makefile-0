@@ -1,4 +1,5 @@
 CC = gcc
+CFLAG = -Wall -pedantic -Werror -Wextra -std=gnu89
 SRC = 0-main.c merge_string_alternately.c
 OBJ = $(SRC:%.c=%.o)
 PROGRAM = merged
@@ -8,20 +9,20 @@ all: $(PROGRAM)
 
 
 $(PROGRAM) : $(SRC:%.c=%.o)
-	$(CC) -o $@ $(OBJ)
+	@$(CC) $(CFLAG) -o $@ $(OBJ)
 
 %.o: %.c
-	$(CC) -c -o $@ $<
+	@$(CC) -c -o $@ $<
 
 run: all
-	./$(PROGRAM)
+	@./$(PROGRAM)
 
 oclean:
-	$(RM) -r $(OBJ)
+	@$(RM) -f $(OBJ)
 
-frun: oclean run fclean 
+frun: run oclean fclean 
 
 fclean:
-	$(RM) -f $(PROGRAM)
+	@$(RM) -f $(PROGRAM)
 
 .PHONY: all run oclean fclean frun
