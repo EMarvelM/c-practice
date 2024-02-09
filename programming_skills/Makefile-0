@@ -1,0 +1,27 @@
+CC = gcc
+SRC = 0-main.c merge_string_alternately.c
+OBJ = $(SRC:%.c=%.o)
+PROGRAM = merged
+RM = rm 
+
+all: $(PROGRAM)
+
+
+$(PROGRAM) : $(SRC:%.c=%.o)
+	$(CC) -o $@ $(OBJ)
+
+%.o: %.c
+	$(CC) -c -o $@ $<
+
+run: all
+	./$(PROGRAM)
+
+oclean:
+	$(RM) -r $(OBJ)
+
+frun: oclean run fclean 
+
+fclean:
+	$(RM) -f $(PROGRAM)
+
+.PHONY: all run oclean fclean frun
