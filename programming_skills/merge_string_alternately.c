@@ -23,35 +23,35 @@ char * mergeAlternately(char * word1, char * word2){
 	int i, j = 0, k = 0;
 
 	for(i = 0; i < len ; i++)
+	{
+		if (word1[k] && word2[j])
 		{
-			if (word1[k] && word2[j])
+			if ((i % 2) == 0)
 			{
-				if ((i % 2) == 0)
-					{
-							merged[i] = word1[k];
-							k++;
-					}
-				else if ((i % 2) != 0)
-					{
-							merged[i] = word2[j];
-							j++;
-					}
-				}
-				else
-				{
-					if (word1[k])
-					{
-						merged[i] = word1[k];
-						k++;
-					}
-					else if (word2[j])
-					{
-						merged[i] = word2[j];
-						j++;
-					}
-				}
+				merged[i] = word1[k];
+				k++;
+			}
+			else if ((i % 2) != 0)
+			{
+				merged[i] = word2[j];
+				j++;
+			}
 		}
-		merged[i] = '\0';
+		else
+		{
+			if (word1[k])
+			{
+				merged[i] = word1[k];
+				k++;
+			}
+			else if (word2[j])
+			{
+				merged[i] = word2[j];
+				j++;
+			}
+		}
+	}
+	merged[i] = '\0';
 
 	return (merged);
 }
