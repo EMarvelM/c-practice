@@ -1,0 +1,28 @@
+CC = gcc
+CFLAG = -Wall -pedantic -Werror -Wextra -std=gnu89
+SRC = 1-main.c 1-find_the_difference.c
+OBJ = $(SRC:%.c=%.o)
+PROGRAM = merged
+RM = rm
+
+all: $(PROGRAM)
+
+
+$(PROGRAM) : $(SRC:%.c=%.o)
+	@$(CC) $(CFLAG) -o $@ $(OBJ)
+
+%.o: %.c
+	@$(CC) -c -o $@ $<
+
+run: all
+	@./$(PROGRAM)
+
+oclean:
+	@$(RM) -f $(OBJ)
+
+frun: run oclean fclean
+
+fclean:
+	@$(RM) -f $(PROGRAM)
+
+.PHONY: all run oclean fclean frun
