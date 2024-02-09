@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 char * mergeAlternately(char * word1, char * word2);
-
+char findTheDifference(char* s, char* t);
 
 
 #endif /* MAIN_H */
