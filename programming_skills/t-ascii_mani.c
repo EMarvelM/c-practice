@@ -41,7 +41,7 @@ unsigned int ascii_mani(char c)
 				}
 				dec = dec / 2;
 			}
-			
+
 			else if ((dec % 2) == 1)
 			{
 				rem = (rem * 10) + 1;
@@ -51,6 +51,8 @@ unsigned int ascii_mani(char c)
 		}
 		j++;
 	}
+	printf("binary == %s\n", binary);
+	binary = reverse_str(binary);
 	printf("binary == %s\n", binary);
 	while(rem > 0)
 	{
@@ -72,9 +74,28 @@ unsigned int ascii_mani(char c)
 				ans = (ans * 10) + 1;
 				rem /= 10;
 			}
-		
+
 		}
 	}
 
 	return (ans);
+}
+
+char *reverse_str(char *str)
+{
+	int len, i = 1;
+	char temp;
+
+	len = strlen(str) - 1;
+	int d_len = len / 2;
+
+	while(d_len >= 0)
+	{
+		temp = str[(len / 2) + i];
+		str[(len / 2) + i] = str[d_len];
+		str[d_len] = temp;
+		d_len -= 1;
+		i++;
+	}
+	return(str);
 }
