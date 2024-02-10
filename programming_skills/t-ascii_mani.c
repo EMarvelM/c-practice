@@ -1,5 +1,5 @@
 #include "main.h"
-unsigned int ascii_mani(char c)
+char *ascii_mani(char c)
 {
 	int dec = (int) c;
 	int ans = -1, rem = -1, j = 0;
@@ -51,7 +51,6 @@ unsigned int ascii_mani(char c)
 		}
 		j++;
 	}
-	printf("binary == %s\n", binary);
 	binary = reverse_str(binary);
 	printf("binary == %s\n", binary);
 	while(rem > 0)
@@ -78,7 +77,7 @@ unsigned int ascii_mani(char c)
 		}
 	}
 
-	return (ans);
+	return (binary);
 }
 
 char *reverse_str(char *str)
@@ -98,4 +97,20 @@ char *reverse_str(char *str)
 		i++;
 	}
 	return(str);
+}
+
+
+char findDifference(char *s, char *t);
+{
+	/* get the difference XOR in each a string*/
+	for (int i = 0; s[i] != '\0'; i++)
+	{
+		if ((i % 2) == 0) char *str2 = ascii_mani(s[i]);
+		else if ((i % 2) == 1) char *str1 = ascii_mani(s[i]);
+		if (i > 0)
+			for (int j = 0; str1[j] != '\0' && str2[j] != '\0'; j++)
+			{
+				if (str1[j] = )
+			}
+	}
 }
