@@ -7,6 +7,7 @@
 
 char * mergeAlternately(char * word1, char * word2);
 char findTheDifference(char* s, char* t);
-unsigned int ascii_mani(char c);
+char *ascii_mani(char c);
+char *reverse_str(char *str);
 
 #endif /* MAIN_H */
