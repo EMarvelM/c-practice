@@ -1,0 +1,31 @@
+CC = gcc
+CFLAG = -Wall -pedantic -Werror -Wextra -std=gnu89
+SRC = t-main.c t-ascii_mani.c
+OBJ = $(SRC:%.c=%.o)
+PROGRAM = merged
+RM = rm
+
+all: $(PROGRAM)
+
+
+$(PROGRAM) : $(SRC:%.c=%.o)
+	@$(CC) $(CFLAG) -o $@ $(OBJ)
+
+%.o: %.c
+	@$(CC) $(CFLAG) -c -o $@ $<
+
+run: all
+	@./$(PROGRAM)
+
+oclean:
+	@$(RM) -f $(OBJ)
+
+frun: run oclean fclean
+
+fclean:
+	@$(RM) -f $(PROGRAM)
+
+betty: $(SRC)
+	betty $^
+
+.PHONY: all run oclean fclean frun betty
