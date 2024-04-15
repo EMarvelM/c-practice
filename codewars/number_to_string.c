@@ -10,12 +10,12 @@ char *number_to_string(int number);
  */
 int main(void)
 {
-	int num = 111;
+	int num = 999;
 	char *str;
 	str = number_to_string(num);
 	
 	if (str)
-		printf("string == %s\n", str);
+		printf("string == %s", str);
 }
 
 
@@ -43,7 +43,7 @@ char *number_to_string(int number) {
 
 	for (i = 0; i < s; i++)
 	{
-		c[i] = num[s - i];
+		c[i] = 48 + num[s - (i + 1)];
 	}
 	c[i] = '\0';
 	return (c);
